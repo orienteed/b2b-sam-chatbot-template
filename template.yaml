@@ -1,0 +1,75 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  sam-chatbot-app
+
+  Sample SAM Template for sam-chatbot-app
+
+Globals:
+  Function:
+    Timeout: 3
+
+Resources:
+  #bot validation lambda function
+  TestlexBotFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: lambda_bot/
+      Handler: lambda_handler.lambda_handler
+      Runtime: python3.8
+      Policies:
+        - AWSLambdaBasicExecutionRole
+      Architectures:
+        - x86_64
+
+  # IAM Role used by the Lex service to make runtime calls
+  LexServiceRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lexv2.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+
+  # give permission to Lex bots to run the validation function
+  lexBotPermission:
+    Type: AWS::Lambda::Permission
+    Properties: 
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt TestlexBotFunction.Arn
+      Principal: lex.amazonaws.com
+
+  #Bot
+  # TestlexBotChat:
+  #   Type: AWS::Lex::Bot
+  #   Properties:
+  #     AutoBuildBotLocales: true
+  #     BotFileS3Location:
+  #       S3Bucket: "bot-lex"
+  #       S3ObjectKey: "PruebaSam-DRAFT-1UPTCTOTIQ-LexJson.zip"
+  #       S3ObjectVersion: "1vNuwx25OilddfBWrK94UZnDcdy1TUMw"
+  #     DataPrivacy:
+  #       ChildDirected: false
+  #     Description: "Test with SAM over a bot that says Me alegro!!"
+  #     IdleSessionTTLInSeconds: 60
+  #     Name: "TestChatBotSAM"
+  #     RoleArn: !GetAtt LexServiceRole.Arn
+  #     TestBotAliasSettings:
+  #       BotAliasLocaleSettings:
+  #         - BotAliasLocaleSetting:
+  #             CodeHookSpecification:
+  #               LambdaCodeHook:
+  #                 CodeHookInterfaceVersion: "1.0"
+  #                 LambdaArn: !GetAtt TestlexBotFunction.Arn
+  #             Enabled: true
+  #           LocaleId: "en_US"
+
+Outputs:
+  TestlexBotFunction:
+    Description: "LexBot Lambda Function ARN"
+    Value: !GetAtt TestlexBotFunction.Arn
