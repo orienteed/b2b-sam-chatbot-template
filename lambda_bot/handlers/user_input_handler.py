@@ -7,9 +7,9 @@ def handleElicitSlot(session_attributes, slot_to_elicit, slots, intent):
     return formElicitSlotResponse(session_attributes, slot_to_elicit, slots, intent)
 
 
-def handlerDelegate(session_attributes, slots, intent):
-    print(formDelegateResponse(session_attributes, slots, intent))
-    return formDelegateResponse(session_attributes, slots, intent)
+def handlerDelegate(session_attributes, slots, intent, message = None):
+    print(formDelegateResponse(session_attributes, slots, intent, message = message))
+    return formDelegateResponse(session_attributes, slots, intent, message = message)
 
 def handleInteractiveOptionResponseElicitAnotherIntent(session_attributes, template):
     print(formElicitSlotWithTemplateResponse(session_attributes, "ticketType", TEMPLATES[template], INTERACTIVE_OPTIONS[template]['slots'], INTERACTIVE_OPTIONS[template]['intent']))
@@ -18,9 +18,9 @@ def handleInteractiveOptionResponseElicitAnotherIntent(session_attributes, templ
 def handleOtherResponse():
     pass
 
-def handlerTerminalResponse(session_attributes, slots):
-    print(formTerminalResponse(session_attributes, slots))
-    return formTerminalResponse(session_attributes, slots)
+def handlerTerminalResponse(session_attributes, slots, intent, message):
+    print(formTerminalResponse(session_attributes, slots, intent, message))
+    return formTerminalResponse(session_attributes, slots, intent, message)
 
 def createSimpleListPickerFromOptions(session_attributes, slot_to_elicit, slots, current_intent):
     print(formElicitSlotWithTemplateResponse(session_attributes, slot_to_elicit, TEMPLATES["BOT_OPTIONS"], slots, current_intent))

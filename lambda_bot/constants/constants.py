@@ -5,6 +5,14 @@ TEMPLATE_TYPES = {
 
 START_INTENT = 'startIntent'
 CREATE_TICKET_INTENT = 'createTicketIntent'
+TALK_TO_AGENT_INTENT = 'talkToAgentIntent'
+CHECK_TICKET_STATUS_INTENT = 'checkTicketStatusIntent'
+
+TICKET_TYPE_ZAMMAD = {
+    'Support ticket': 'Support issue',
+    'Order ticket': 'Order issue',
+    'Enhancement ticket': 'Enhancement'
+}
 
 IMAGE_URLS = {
     'CREATE_TICKET': 'https://s3.amazonaws.com/sam-chatbot-app/images/create_ticket.png',
@@ -69,5 +77,13 @@ INTERACTIVE_OPTIONS = {
             'title': None,
             'description': None,
         }
+    }
+}
+
+CHECK_TICKET_STATUS = {
+    'input': CHATBOT_OPTIONS['TITLE_TICKET_STATUS'],
+    'intent': CHECK_TICKET_STATUS_INTENT,
+    'slots': {
+        'ticketNumber': None
     }
 }

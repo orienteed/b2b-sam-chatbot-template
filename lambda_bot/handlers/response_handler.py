@@ -23,39 +23,46 @@ def formElicitSlotWithTemplateResponse(session_attributes, slot_to_elicit, templ
     }
 
 
-def formTerminalResponse(session_attributes, slots):
+def formTerminalResponse(session_attributes, slots, intent, message):
     return {
         "sessionState": {
-            "sessionAttributes": session_attributes,
 			"dialogAction": {
 				"type": "Close"
 			},
             "intent": {
-                "name": "createTicketIntent",
-                "state": "Fulfilled",
-                "slots": slots
+                "name": intent,
+                "state": "Fulfilled"
             }
         },
         "messages": [{
             "contentType": "PlainText",
-            "content": "Thank you for using our service. Have a nice day!"
+            "content": message
         }]
-    },
-
-def formDelegateResponse(session_attributes, slots, intent):
-    return {
-        "sessionState": {
-            "sessionAttributes": session_attributes,
-            "dialogAction": {
-                "type": "Delegate",
-            },
-            "intent": {
-                "name": intent,
-                "slots": slots,
-                "state": "InProgress"
-            },
-        }
     }
+
+def formDelegateResponse(session_attributes, slots, intent, message = None):
+    
+    response = {
+        "sessionState": {
+                "sessionAttributes": session_attributes,
+                "dialogAction": {
+                    "type": "Delegate"
+                },
+                "intent": {
+                    "name": intent,
+                    "slots": slots,
+                    "state": "InProgress"
+                }
+            }
+    }
+    
+    if message is not None:
+        response["messages"] = [{
+            "contentType": "PlainText",
+            "content": message
+        }]
+
+    return response
 
 
 def formElicitIntentResponse(intentName, messageText):
