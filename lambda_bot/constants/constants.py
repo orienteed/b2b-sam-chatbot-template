@@ -3,27 +3,15 @@ TEMPLATE_TYPES = {
     'TIMEPICKER': 'TimePicker'
 }
 
-START_INTENT = 'startIntent'
-CREATE_TICKET_INTENT = 'createTicketIntent'
-TALK_TO_AGENT_INTENT = 'talkToAgentIntent'
-CHECK_TICKET_STATUS_INTENT = 'checkTicketStatusIntent'
-
-TICKET_TYPE_ZAMMAD = {
-    'Support ticket': 'Support issue',
-    'Order ticket': 'Order issue',
-    'Enhancement ticket': 'Enhancement'
-}
-
-IMAGE_URLS = {
-    'CREATE_TICKET': 'https://s3.amazonaws.com/sam-chatbot-app/images/create_ticket.png',
-    'TICKET_STATUS': 'https://s3.amazonaws.com/sam-chatbot-app/images/ticket_status.png',
-    'TALK_TO_AGENT': 'https://s3.amazonaws.com/sam-chatbot-app/images/talk_to_agent.png'
+TEMPLATES = {
+    "BOT_OPTIONS": "BOT_OPTIONS",
+    "CREATE_TICKET": "CREATE_TICKET"
 }
 
 DIALOG_ACTIONS_TYPES = {
     'CLOSE': 'Close',
     'CONFIRM_INTENT': 'ConfirmIntent',
-    'DELERGATE': 'Delegate',
+    'DELEGATE': 'Delegate',
     'ELICIT_INTENT': 'ElicitIntent',
     'ELICIT_SLOT': 'ElicitSlot'
 }
@@ -44,6 +32,59 @@ MESSAGES_CONTENT_TYPES = {
     'PLAIN_TEXT': 'PlainText',
     'SSML': 'SSML'
 }
+
+
+ZAMMAD_HEADERS = {
+    'AUTHORIZATION': 'Authorization',
+    'CSR_AUTHORIZATION': 'csr-authorization',
+    'CONTENT_TYPE': 'Content-Type',
+}
+
+TICKET_TYPE_ZAMMAD = {
+    'Support ticket': 'Support issue',
+    'Order ticket': 'Order issue',
+    'Enhancement ticket': 'Enhancement'
+}
+
+CHECK_TICKET_STATES_MESSAGES = {
+    'TICKET_FOUND': 'The status of ticket {} is {}',
+    'TICKET_NOT_FOUND': 'Ticket {} not found'
+}
+
+CREATE_TICKET_MESSAGES = {
+    'TICKET_CREATED': 'Ticket created with number {}',
+    'TICKET_NOT_CREATED': 'Error creating the ticket'
+}
+
+
+START_INTENT = 'startIntent'
+CREATE_TICKET_INTENT = 'createTicketIntent'
+TALK_TO_AGENT_INTENT = 'talkToAgentIntent'
+CHECK_TICKET_STATUS_INTENT = 'checkTicketStatusIntent'
+
+
+START_INTENT_SLOTS = {
+    'OPTIONS': 'options'
+}
+
+CREATE_TICKET_INTENT_SLOTS = {
+    'TICKET_TYPE': 'ticketType',
+    'ORDER_NUMBER': 'orderNumber',
+    'TITLE': 'title',
+    'DESCRIPTION': 'description'
+}
+
+CHECK_TICKET_STATUS_INTENT_SLOTS = {
+    'TICKET_NUMBER': 'ticketNumber'
+}
+
+SESSION_ATTRIBUTES = {
+    'MAGENTO_TOKEN': 'magento_token',
+    'TITLE_ELICIT': 'title_elicit',
+    'DESCRIPTION_ELICIT': 'description_elicit'
+}
+
+
 
 CHATBOT_OPTIONS = {
     'CARD_TITLE': 'What would you like to do?',
@@ -72,10 +113,10 @@ INTERACTIVE_OPTIONS = {
         'input': CHATBOT_OPTIONS['TITLE_CREATE_TICKET'],
         'intent': CREATE_TICKET_INTENT,
         'slots': {
-            'ticketType': None,
-            'orderNumber': None,
-            'title': None,
-            'description': None,
+            CREATE_TICKET_INTENT_SLOTS['TICKET_TYPE']: None,
+            CREATE_TICKET_INTENT_SLOTS['ORDER_NUMBER']: None,
+            CREATE_TICKET_INTENT_SLOTS['TITLE']: None,
+            CREATE_TICKET_INTENT_SLOTS['DESCRIPTION']: None
         }
     }
 }
@@ -84,6 +125,15 @@ CHECK_TICKET_STATUS = {
     'input': CHATBOT_OPTIONS['TITLE_TICKET_STATUS'],
     'intent': CHECK_TICKET_STATUS_INTENT,
     'slots': {
-        'ticketNumber': None
+        CHECK_TICKET_STATUS_INTENT_SLOTS['TICKET_NUMBER']: None
+    }
+}
+
+SLOTS_STRUCTURE = {
+    'shape': 'Scalar', 
+    'value': {
+        'resolvedValues': [{}], 
+        'interpretedValue': {}, 
+        'originalValue': {}
     }
 }

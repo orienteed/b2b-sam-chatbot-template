@@ -1,7 +1,7 @@
-from constants.constants import TEMPLATE_TYPES, CHATBOT_OPTIONS, CREATE_TICKET_OPTIONS
+from constants.constants import TEMPLATE_TYPES, CHATBOT_OPTIONS, CREATE_TICKET_OPTIONS, TEMPLATES
 
 TEMPLATES = {
-    "BOT_OPTIONS": {
+    TEMPLATES["BOT_OPTIONS"]: {
         "templateType": TEMPLATE_TYPES['LISTPICKER'],
         "version": "1.0",
         "data": {
@@ -23,7 +23,7 @@ TEMPLATES = {
         }
     },
 
-    "CREATE_TICKET": {
+    TEMPLATES["CREATE_TICKET"]: {
         "templateType": TEMPLATE_TYPES['LISTPICKER'],
         "version": "1.0",
         "data": {
