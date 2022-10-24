@@ -80,8 +80,8 @@ def formElicitIntentResponse(intentName, messageText):
         }]
     }
 
-def formElicitSlotResponse(session_attributes, slot_to_elicit, slots, intent):
-    return {
+def formElicitSlotResponse(session_attributes, slot_to_elicit, slots, intent, message = None):
+    response = {
 		"sessionState": {
             "sessionAttributes": session_attributes,
 			"dialogAction": {
@@ -96,3 +96,11 @@ def formElicitSlotResponse(session_attributes, slot_to_elicit, slots, intent):
             },
 		}
     }
+
+    if message is not None:
+        response["messages"] = [{
+            "contentType": MESSAGES_CONTENT_TYPES["PLAIN_TEXT"],
+            "content": message
+        }]
+
+    return response

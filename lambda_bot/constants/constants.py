@@ -1,3 +1,7 @@
+from utils.locale import Locale
+
+locale = Locale()
+
 TEMPLATE_TYPES = {
     'LISTPICKER': 'ListPicker',
     'TIMEPICKER': 'TimePicker'
@@ -41,20 +45,34 @@ ZAMMAD_HEADERS = {
 }
 
 TICKET_TYPE_ZAMMAD = {
-    'Support ticket': 'Support issue',
-    'Order ticket': 'Order issue',
-    'Enhancement ticket': 'Enhancement'
+    locale.get_i18n().t('CREATE_TICKET_OPTIONS:TITLE_SUPPORT_TICKET', locale=locale.get_locale()): 'Support issue',
+    locale.get_i18n().t('CREATE_TICKET_OPTIONS:TITLE_ORDER_TICKET', locale=locale.get_locale()): 'Order issue',
+    locale.get_i18n().t('CREATE_TICKET_OPTIONS:TITLE_ENHANCEMENT_TICKET', locale=locale.get_locale()): 'Enhancement'
 }
 
-CHECK_TICKET_STATES_MESSAGES = {
-    'TICKET_FOUND': 'The status of ticket {} is {}',
-    'TICKET_NOT_FOUND': 'Ticket {} not found'
-}
+def get_check_ticket_states_messages(ticket_number = None, state = None):
+    
+    CHECK_TICKET_STATES_MESSAGES = {
+        'ELICIT_TICKET_NUMBER_MESSAGE': locale.get_i18n().t('CHECK_TICKET_STATES_MESSAGES:ELICIT_TICKET_NUMBER_MESSAGE', locale=locale.get_locale()),
+        'TICKET_FOUND': locale.get_i18n().t('CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND', locale=locale.get_locale(), ticket_number = ticket_number, state = state),
+        'TICKET_NOT_FOUND': locale.get_i18n().t('CHECK_TICKET_STATES_MESSAGES:TICKET_NOT_FOUND', locale=locale.get_locale(), ticket_number = ticket_number),
+        'new': locale.get_i18n().t('CHECK_TICKET_STATES_MESSAGES:STATE_NEW', locale=locale.get_locale()),
+        'open': locale.get_i18n().t('CHECK_TICKET_STATES_MESSAGES:STATE_OPEN', locale=locale.get_locale()),
+        'closed': locale.get_i18n().t('CHECK_TICKET_STATES_MESSAGES:STATE_CLOSED', locale=locale.get_locale()),
+    }
 
-CREATE_TICKET_MESSAGES = {
-    'TICKET_CREATED': 'Ticket created with number {}',
-    'TICKET_NOT_CREATED': 'Error creating the ticket'
-}
+    return CHECK_TICKET_STATES_MESSAGES
+
+
+def get_create_ticket_messages(ticket_number = None):
+    CREATE_TICKET_MESSAGES = {
+        'ELICIT_TITLE_MESSAGE': locale.get_i18n().t('CREATE_TICKET_MESSAGES:ELICIT_TITLE_MESSAGE', locale=locale.get_locale()),
+        'ELICIT_DESCRIPTION_MESSAGE': locale.get_i18n().t('CREATE_TICKET_MESSAGES:ELICIT_DESCRIPTION_MESSAGE', locale=locale.get_locale()),
+        'TICKET_CREATED': locale.get_i18n().t('CREATE_TICKET_MESSAGES:TICKET_CREATED', locale=locale.get_locale(), ticket_number = ticket_number),
+        'TICKET_NOT_CREATED': locale.get_i18n().t('CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED', locale=locale.get_locale())
+    }
+
+    return CREATE_TICKET_MESSAGES
 
 
 START_INTENT = 'startIntent'
@@ -71,8 +89,7 @@ CREATE_TICKET_INTENT_SLOTS = {
     'TICKET_TYPE': 'ticketType',
     'ORDER_NUMBER': 'orderNumber',
     'TITLE': 'title',
-    'DESCRIPTION': 'description'
-}
+    'DESCRIPTION': 'description'}
 
 CHECK_TICKET_STATUS_INTENT_SLOTS = {
     'TICKET_NUMBER': 'ticketNumber'
@@ -84,33 +101,39 @@ SESSION_ATTRIBUTES = {
     'DESCRIPTION_ELICIT': 'description_elicit'
 }
 
+def get_chatbot_options():
+    CHATBOT_OPTIONS = {
+        'CARD_TITLE': locale.get_i18n().t('CHATBOT_OPTIONS:CARD_TITLE', locale=locale.get_locale()),
+        'CARD_SUBTITLE': locale.get_i18n().t('CHATBOT_OPTIONS:CARD_SUBTITLE', locale=locale.get_locale()),
+        'TITLE_CREATE_TICKET': locale.get_i18n().t('CHATBOT_OPTIONS:TITLE_CREATE_TICKET', locale=locale.get_locale()),
+        'SUBTITLE_CREATE_TICKET': locale.get_i18n().t('CHATBOT_OPTIONS:SUBTITLE_CREATE_TICKET', locale=locale.get_locale()),
+        'TITLE_TICKET_STATUS': locale.get_i18n().t('CHATBOT_OPTIONS:TITLE_TICKET_STATUS', locale=locale.get_locale()),
+        'SUBTITLE_TICKET_STATUS': locale.get_i18n().t('CHATBOT_OPTIONS:SUBTITLE_TICKET_STATUS', locale=locale.get_locale()),
+        'TITLE_TALK_TO_AGENT': locale.get_i18n().t('CHATBOT_OPTIONS:TITLE_TALK_TO_AGENT', locale=locale.get_locale()),
+        'SUBTITLE_TALK_TO_AGENT': locale.get_i18n().t('CHATBOT_OPTIONS:SUBTITLE_TALK_TO_AGENT', locale=locale.get_locale())
+    }
+
+    return CHATBOT_OPTIONS
 
 
-CHATBOT_OPTIONS = {
-    'CARD_TITLE': 'What would you like to do?',
-    'CARD_SUBTITLE': 'Please select an option below.',
-    'TITLE_CREATE_TICKET': 'Create a ticket',
-    'SUBTITLE_CREATE_TICKET': 'Create a ticket for a problem you are experiencing.',
-    'TITLE_TICKET_STATUS': 'Check ticket status',
-    'SUBTITLE_TICKET_STATUS': 'Check the status of a ticket you have already created.',
-    'TITLE_TALK_TO_AGENT': 'Talk to an agent',
-    'SUBTITLE_TALK_TO_AGENT': 'Talk to an agent to get help with your problem.'
-}
+def get_create_ticket_options():
+    CREATE_TICKET_OPTIONS = {
+        'CARD_TITLE': locale.get_i18n().t('CREATE_TICKET_OPTIONS:CARD_TITLE', locale=locale.get_locale()),
+        'CARD_SUBTITLE': locale.get_i18n().t('CREATE_TICKET_OPTIONS:CARD_SUBTITLE', locale=locale.get_locale()),
+        'TITLE_SUPPORT_TICKET': locale.get_i18n().t('CREATE_TICKET_OPTIONS:TITLE_SUPPORT_TICKET', locale=locale.get_locale()),
+        'SUBTITLE_SUPPORT_TICKET': locale.get_i18n().t('CREATE_TICKET_OPTIONS:SUBTITLE_SUPPORT_TICKET', locale=locale.get_locale()),
+        'TITLE_ORDER_TICKET': locale.get_i18n().t('CREATE_TICKET_OPTIONS:TITLE_ORDER_TICKET', locale=locale.get_locale()),
+        'SUBTITLE_ORDER_TICKET': locale.get_i18n().t('CREATE_TICKET_OPTIONS:SUBTITLE_ORDER_TICKET', locale=locale.get_locale()),
+        'TITLE_ENHANCEMENT_TICKET': locale.get_i18n().t('CREATE_TICKET_OPTIONS:TITLE_ENHANCEMENT_TICKET', locale=locale.get_locale()),
+        'SUBTITLE_ENHANCEMENT_TICKET': locale.get_i18n().t('CREATE_TICKET_OPTIONS:SUBTITLE_ENHANCEMENT_TICKET', locale=locale.get_locale())
+    }
 
-CREATE_TICKET_OPTIONS = {
-    'CARD_TITLE': 'What type of ticket would you like to create?',
-    'CARD_SUBTITLE': 'Please select an option below.',
-    'TITLE_SUPPORT_TICKET': 'Support ticket',
-    'SUBTITLE_SUPPORT_TICKET': 'Create a ticket for a problem you are experiencing.',
-    'TITLE_ORDER_TICKET': 'Order ticket',
-    'SUBTITLE_ORDER_TICKET': 'Create a ticket for an order you have placed.',
-    'TITLE_ENHANCEMENT_TICKET': 'Enhancement ticket',
-    'SUBTITLE_ENHANCEMENT_TICKET': 'Create a ticket for an enhancement you would like to see.'
-}
+    return CREATE_TICKET_OPTIONS
+
 
 INTERACTIVE_OPTIONS = {
     'CREATE_TICKET': {
-        'input': CHATBOT_OPTIONS['TITLE_CREATE_TICKET'],
+        'input': get_chatbot_options()['TITLE_CREATE_TICKET'],
         'intent': CREATE_TICKET_INTENT,
         'slots': {
             CREATE_TICKET_INTENT_SLOTS['TICKET_TYPE']: None,
@@ -122,18 +145,21 @@ INTERACTIVE_OPTIONS = {
 }
 
 CHECK_TICKET_STATUS = {
-    'input': CHATBOT_OPTIONS['TITLE_TICKET_STATUS'],
+    'input': get_chatbot_options()['TITLE_TICKET_STATUS'],
     'intent': CHECK_TICKET_STATUS_INTENT,
     'slots': {
         CHECK_TICKET_STATUS_INTENT_SLOTS['TICKET_NUMBER']: None
     }
 }
 
-SLOTS_STRUCTURE = {
-    'shape': 'Scalar', 
-    'value': {
-        'resolvedValues': [{}], 
-        'interpretedValue': {}, 
-        'originalValue': {}
+def get_slots_structure(input):
+    SLOTS_STRUCTURE = {
+        'shape': 'Scalar', 
+        'value': {
+            'resolvedValues': [input], 
+            'interpretedValue': input, 
+            'originalValue': input
+        }
     }
-}
+
+    return SLOTS_STRUCTURE

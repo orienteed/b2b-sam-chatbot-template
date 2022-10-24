@@ -1,0 +1,37 @@
+{
+  "en": {
+    "CHATBOT_OPTIONS:CARD_TITLE": "What would you like to do?",
+    "CHATBOT_OPTIONS:CARD_SUBTITLE": "Please select an option below",
+    "CHATBOT_OPTIONS:TITLE_CREATE_TICKET": "Create a ticket",
+    "CHATBOT_OPTIONS:SUBTITLE_CREATE_TICKET": "Create a ticket for a problem you are experiencing.",
+    "CHATBOT_OPTIONS:TITLE_TICKET_STATUS": "Check ticket status",
+    "CHATBOT_OPTIONS:SUBTITLE_TICKET_STATUS": "Check the status of a ticket you have already created.",
+    "CHATBOT_OPTIONS:TITLE_TALK_TO_AGENT": "Talk to an agent",
+    "CHATBOT_OPTIONS:SUBTITLE_TALK_TO_AGENT": "Talk to an agent to get help with your problem.",
+    
+    "CREATE_TICKET_OPTIONS:CARD_TITLE": "What type of ticket would you like to create?",
+    "CREATE_TICKET_OPTIONS:CARD_SUBTITLE": "Please select an option below.",
+    "CREATE_TICKET_OPTIONS:TITLE_SUPPORT_TICKET": "Support ticket",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_SUPPORT_TICKET": "Create a ticket for a problem you are experiencing.",
+    "CREATE_TICKET_OPTIONS:TITLE_ORDER_TICKET": "Order ticket",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ORDER_TICKET": "Create a ticket for an order you have placed.",
+    "CREATE_TICKET_OPTIONS:TITLE_ENHANCEMENT_TICKET": "Enhancement ticket",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ENHANCEMENT_TICKET": "Create a ticket for an enhancement you would like to see.",
+    
+    "TICKET_TYPE_ZAMMAD:Support ticket": "Support issue",
+    "TICKET_TYPE_ZAMMAD:Order ticket": "Order issue",
+    "TICKET_TYPE_ZAMMAD:Enhancement ticket": "Enhancement",
+    
+    "CHECK_TICKET_STATES_MESSAGES:ELICIT_TICKET_NUMBER_MESSAGE": "Enter the ticket ID.",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND": "The status of ticket %{ticket_number} is %{state}",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_NOT_FOUND": "Ticket %{ticket_number} not found",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_OPEN": "Open",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_CLOSED": "Closed",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_NEW": "New",
+    
+    "CREATE_TICKET_MESSAGES:ELICIT_TITLE_MESSAGE": "Introduce the title of the ticket",
+    "CREATE_TICKET_MESSAGES:ELICIT_DESCRIPTION_MESSAGE": "Introduce the description of the ticket",
+    "CREATE_TICKET_MESSAGES:TICKET_CREATED": "Ticket created with number %{ticket_number}",
+    "CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED": "Error creating the ticket"
+  }
+}

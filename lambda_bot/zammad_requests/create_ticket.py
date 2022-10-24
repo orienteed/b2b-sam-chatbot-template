@@ -3,7 +3,7 @@ import json
 
 from models.ticket import Ticket
 from models.article import Article
-from constants.constants import ZAMMAD_HEADERS, CREATE_TICKET_MESSAGES
+from constants.constants import ZAMMAD_HEADERS, get_create_ticket_messages
 
 
 def create_ticket(ticket_type, title, description, magento_token, order_number=None):
@@ -26,7 +26,7 @@ def create_ticket(ticket_type, title, description, magento_token, order_number=N
 
     if not "error" in reply.json():
         ticket_number = reply.json()['number']
-        return CREATE_TICKET_MESSAGES['TICKET_CREATED'].format(ticket_number)
+        return get_create_ticket_messages(ticket_number).get('TICKET_CREATED')
 
     else:
-        return CREATE_TICKET_MESSAGES['TICKET_NOT_CREATED']
+        return get_create_ticket_messages().get('TICKET_NOT_CREATED')

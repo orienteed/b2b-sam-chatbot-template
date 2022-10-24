@@ -1,6 +1,6 @@
 import requests
 import json
-from constants.constants import ZAMMAD_HEADERS, CHECK_TICKET_STATES_MESSAGES
+from constants.constants import ZAMMAD_HEADERS, get_check_ticket_states_messages
 
 def check_ticket_states(ticket_number, magento_token):
 
@@ -16,10 +16,13 @@ def check_ticket_states(ticket_number, magento_token):
         ticket_id = ticket_data['tickets'][0]
         state_id = ticket_data['assets']['Ticket'][str(ticket_id)]['state_id']
 
-        return CHECK_TICKET_STATES_MESSAGES['TICKET_FOUND'].format(ticket_number, posible_states[str(state_id)])
+        state = posible_states[str(state_id)]
+        translated_state = get_check_ticket_states_messages()[str(state)]
+
+        return get_check_ticket_states_messages(ticket_number, translated_state).get('TICKET_FOUND')
 
     else:
-        return CHECK_TICKET_STATES_MESSAGES['TICKET_NOT_FOUND'].format(ticket_number)
+        return get_check_ticket_states_messages(ticket_number).get('TICKET_NOT_FOUND')
 
 def get_ticket_states(headers):
 

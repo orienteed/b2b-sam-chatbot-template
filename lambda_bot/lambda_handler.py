@@ -1,14 +1,13 @@
-from constants.constants import INTERACTIVE_OPTIONS, START_INTENT, CREATE_TICKET_INTENT, CHECK_TICKET_STATUS_INTENT
-from handlers.requests_hadler import *
-
-from handlers.start_intent_handler import *
-from handlers.create_ticket_intent_handler import *
-from handlers.check_ticket_status_intent_handler import *
-from handlers.response_handler import formDelegateResponse
-
 def lambda_handler(event, context):
 
     input, current_intent, slot_to_elicit, slots, session_attributes, template, title_elicit, description_elicit = setup_variables(event)
+
+    from constants.constants import START_INTENT, CREATE_TICKET_INTENT, CHECK_TICKET_STATUS_INTENT
+
+    from handlers.start_intent_handler import start_intent_handler
+    from handlers.create_ticket_intent_handler import create_ticket_handler
+    from handlers.check_ticket_status_intent_handler import check_ticket_status_handler
+    from handlers.response_handler import formDelegateResponse
 
     if current_intent == START_INTENT:
         return start_intent_handler(input, event, session_attributes, slots, current_intent, template, slot_to_elicit)
@@ -23,11 +22,23 @@ def lambda_handler(event, context):
         return formDelegateResponse(session_attributes, slots, current_intent)
 
 def setup_variables(event):
+
+    from utils.locale import Locale
+
+    print(event)
+
+    session_attributes = event["sessionState"]["sessionAttributes"]
+
+    locale = Locale()
+    locale.set_locale(session_attributes["locale"][1:3])
+
+    from constants.constants import INTERACTIVE_OPTIONS, SESSION_ATTRIBUTES
+
     input = event["inputTranscript"]
     current_intent = event["sessionState"]["intent"]["name"]
         
     slots = event["sessionState"]["intent"]["slots"]
-    session_attributes = event["sessionState"]["sessionAttributes"]
+
     template = [template for template in INTERACTIVE_OPTIONS if INTERACTIVE_OPTIONS[template]['input'] == input]
 
     slot_to_elicit = None
