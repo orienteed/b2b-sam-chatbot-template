@@ -23,7 +23,7 @@
     "TICKET_TYPE_ZAMMAD:Enhancement ticket": "Enhancement",
     
     "CHECK_TICKET_STATES_MESSAGES:ELICIT_TICKET_NUMBER_MESSAGE": "Enter the ticket ID.",
-    "CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND": "The status of ticket %{ticket_number} is %{state}",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND": "The status of ticket %{ticket_number} is: %{state}",
     "CHECK_TICKET_STATES_MESSAGES:TICKET_NOT_FOUND": "Ticket %{ticket_number} not found",
     "CHECK_TICKET_STATES_MESSAGES:STATE_OPEN": "Open",
     "CHECK_TICKET_STATES_MESSAGES:STATE_CLOSED": "Closed",
@@ -32,6 +32,11 @@
     "CREATE_TICKET_MESSAGES:ELICIT_TITLE_MESSAGE": "Introduce the title of the ticket",
     "CREATE_TICKET_MESSAGES:ELICIT_DESCRIPTION_MESSAGE": "Introduce the description of the ticket",
     "CREATE_TICKET_MESSAGES:TICKET_CREATED": "Ticket created with number %{ticket_number}",
-    "CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED": "Error creating the ticket"
+    "CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED": "Error creating the ticket",
+
+    "CONTINUE_CHATBOT_MESSAGES:CARD_TITLE": "Do you want to continue in the chatbot?",
+    "CONTINUE_CHATBOT_MESSAGES:CARD_SUBTITLE": "Select an option ",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_YES": "Yes",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_NO": "No"
   }
 }

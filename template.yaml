@@ -7,7 +7,7 @@ Description: >
 
 Globals:
   Function:
-    Timeout: 3
+    Timeout: 10
 
 Resources:
   #bot validation lambda function
@@ -21,6 +21,9 @@ Resources:
         - AWSLambdaBasicExecutionRole
       Architectures:
         - x86_64
+      Environment:
+        Variables:
+          ZAMMAD_GATEWAY_URL: "YOUR_ZAMMAD_GATEWAY_URL_HERE"
 
   # IAM Role used by the Lex service to make runtime calls
   LexServiceRole:

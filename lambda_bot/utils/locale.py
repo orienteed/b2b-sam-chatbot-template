@@ -1,5 +1,6 @@
 import i18n
 
+
 class LocaleMeta(type):
     _instances = {}
 
