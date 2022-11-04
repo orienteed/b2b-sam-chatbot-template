@@ -1,0 +1,42 @@
+{
+  "pt": {
+    "CHATBOT_OPTIONS:CARD_TITLE": "O que gostaria de fazer?",
+    "CHATBOT_OPTIONS:CARD_SUBTITLE": "Por favor, seleccione uma opção abaixo.",
+    "CHATBOT_OPTIONS:TITLE_CREATE_TICKET": "Criar um bilhete",
+    "CHATBOT_OPTIONS:SUBTITLE_CREATE_TICKET": "Crie um bilhete para um problema que esteja a ter.",
+    "CHATBOT_OPTIONS:TITLE_TICKET_STATUS": "Verificar o estado do bilhete",
+    "CHATBOT_OPTIONS:SUBTITLE_TICKET_STATUS": "Verifique o estado de um bilhete que já tenha criado.",
+    "CHATBOT_OPTIONS:TITLE_TALK_TO_AGENT": "Fale com um agente",
+    "CHATBOT_OPTIONS:SUBTITLE_TALK_TO_AGENT": "Fale com um agente para obter ajuda para o seu problema.",
+    
+    "CREATE_TICKET_OPTIONS:CARD_TITLE": "Que tipo de bilhete gostaria de criar?",
+    "CREATE_TICKET_OPTIONS:CARD_SUBTITLE": "Por favor, seleccione uma opção abaixo.",
+    "CREATE_TICKET_OPTIONS:TITLE_SUPPORT_TICKET": "Bilhete de apoio",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_SUPPORT_TICKET": "Crie um bilhete para um problema que esteja a ter.",
+    "CREATE_TICKET_OPTIONS:TITLE_ORDER_TICKET": "Encomendar bilhete",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ORDER_TICKET": "Crie um bilhete para uma encomenda que tenha feito.",
+    "CREATE_TICKET_OPTIONS:TITLE_ENHANCEMENT_TICKET": "Bilhete de melhoria",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ENHANCEMENT_TICKET": "Crie um bilhete para uma melhoria que gostaria de ver.",
+    
+    "TICKET_TYPE_ZAMMAD:Support ticket": "Problema de apoio",
+    "TICKET_TYPE_ZAMMAD:Order ticket": "Emissão da encomenda",
+    "TICKET_TYPE_ZAMMAD:Enhancement ticket'": "Aperfeiçoamento",
+    
+    "CHECK_TICKET_STATES_MESSAGES:ELICIT_TICKET_NUMBER_MESSAGE": "Introduza o ID do bilhete",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND": "O estatuto do bilhete %{ticket_number} é: %{state}",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_NOT_FOUND": "Bilhete %{ticket_number} não encontrado",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_OPEN": "Aberto",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_CLOSED": "Fechado",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_NEW": "Novo",
+
+    "CREATE_TICKET_MESSAGES:ELICIT_TITLE_MESSAGE": "Introduzir o título do bilhete",
+    "CREATE_TICKET_MESSAGES:ELICIT_DESCRIPTION_MESSAGE": "Introduzir a descrição do bilhete",
+    "CREATE_TICKET_MESSAGES:TICKET_CREATED": "Bilhete criado com número %{ticket_number}",
+    "CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED": "Erro ao criar o bilhete",
+
+    "CONTINUE_CHATBOT_MESSAGES:CARD_TITLE": "Quer continuar no chatbot?",
+    "CONTINUE_CHATBOT_MESSAGES:CARD_SUBTITLE": "Select an option",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_YES": "Sim",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_NO": "Não"
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "es": {
+    "CHATBOT_OPTIONS:CARD_TITLE": "¿Qué le gustaría hacer?",
+    "CHATBOT_OPTIONS:CARD_SUBTITLE": "Seleccione una opción a continuación.",
+    "CHATBOT_OPTIONS:TITLE_CREATE_TICKET": "Crear un ticket",
+    "CHATBOT_OPTIONS:SUBTITLE_CREATE_TICKET": "Cree un ticket para un problema que esté experimentando.",
+    "CHATBOT_OPTIONS:TITLE_TICKET_STATUS": "Comprobar el estado de un ticket",
+    "CHATBOT_OPTIONS:SUBTITLE_TICKET_STATUS": "Compruebe el estado de un ticket que ya ha creado.",
+    "CHATBOT_OPTIONS:TITLE_TALK_TO_AGENT": "Hablar con un agente",
+    "CHATBOT_OPTIONS:SUBTITLE_TALK_TO_AGENT": "Hable con un agente para que le ayude con su problema.  ",
+    
+    "CREATE_TICKET_OPTIONS:CARD_TITLE": "¿Qué tipo de ticket desea crear?",
+    "CREATE_TICKET_OPTIONS:CARD_SUBTITLE": "Seleccione una opción a continuación.",
+    "CREATE_TICKET_OPTIONS:TITLE_SUPPORT_TICKET": "Ticket de soporte",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_SUPPORT_TICKET": "Cree un ticket para un problema que esté experimentando.",
+    "CREATE_TICKET_OPTIONS:TITLE_ORDER_TICKET": "Ticket de pedido",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ORDER_TICKET": "Cree un ticket para un pedido que haya realizado.",
+    "CREATE_TICKET_OPTIONS:TITLE_ENHANCEMENT_TICKET": "Solicitud de mejora",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ENHANCEMENT_TICKET": "Cree un ticket para una mejora que le gustaría ver.",
+    
+    "TICKET_TYPE_ZAMMAD:Support ticket": "Problema de soporte",
+    "TICKET_TYPE_ZAMMAD:Order ticket": "Problema de pedido",
+    "TICKET_TYPE_ZAMMAD:Enhancement ticket'": "Mejora",
+    
+    "CHECK_TICKET_STATES_MESSAGES:ELICIT_TICKET_NUMBER_MESSAGE": "Introduce el ID del ticket",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND": "El estado del ticket %{ticket_number} es: %{state}",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_NOT_FOUND": "Ticket %{ticket_number} no encontrado",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_OPEN": "Abierto",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_CLOSED": "Cerrado",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_NEW": "Nuevo",
+
+    "CREATE_TICKET_MESSAGES:ELICIT_TITLE_MESSAGE": "Introduce el título del ticket.",
+    "CREATE_TICKET_MESSAGES:ELICIT_DESCRIPTION_MESSAGE": "Introduce la descripción del ticket.",
+    "CREATE_TICKET_MESSAGES:TICKET_CREATED": "Ticket creado con el número %{ticket_number}",
+    "CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED": "Error al crear el ticket",
+
+    "CONTINUE_CHATBOT_MESSAGES:CARD_TITLE": "¿Deseas continuar en el chatbot?",
+    "CONTINUE_CHATBOT_MESSAGES:CARD_SUBTITLE": "Selecciona una opción",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_YES": "Sí",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_NO": "No"
+  }
+}
