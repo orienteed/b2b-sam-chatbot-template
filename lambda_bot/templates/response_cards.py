@@ -1,47 +1,65 @@
-from constants.constants import TEMPLATE_TYPES, CHATBOT_OPTIONS, CREATE_TICKET_OPTIONS, TEMPLATES
+def get_template_create_ticket():
+    from constants.constants import TEMPLATE_TYPES
+    from constants.messages import get_create_ticket_options
 
-TEMPLATES = {
-    TEMPLATES["BOT_OPTIONS"]: {
-        "templateType": TEMPLATE_TYPES['LISTPICKER'],
+    CREATE_TICKET = {
+        "templateType": TEMPLATE_TYPES["LISTPICKER"],
         "version": "1.0",
         "data": {
             "content": {
-                "title": CHATBOT_OPTIONS['CARD_TITLE'],
-                "subtitle": CHATBOT_OPTIONS['CARD_SUBTITLE'],
+                "title": get_create_ticket_options()["CARD_TITLE"],
                 "elements": [
-                    {
-                        "title": CHATBOT_OPTIONS['TITLE_CREATE_TICKET']
-                    },
-                    {
-                        "title": CHATBOT_OPTIONS['TITLE_TICKET_STATUS']
-                    },
-                    {
-                        "title": CHATBOT_OPTIONS['TITLE_TALK_TO_AGENT']
-                    },
+                    {"title": get_create_ticket_options()["TITLE_SUPPORT_TICKET"]},
+                    {"title": get_create_ticket_options()["TITLE_ORDER_TICKET"]},
+                    {"title": get_create_ticket_options()["TITLE_ENHANCEMENT_TICKET"]},
                 ],
             },
-        }
-    },
+        },
+    }
 
-    TEMPLATES["CREATE_TICKET"]: {
-        "templateType": TEMPLATE_TYPES['LISTPICKER'],
+    return CREATE_TICKET
+
+
+def get_template_bot_options():
+
+    from constants.constants import TEMPLATE_TYPES
+    from constants.messages import get_chatbot_options
+
+    BOT_OPTIONS = {
+        "templateType": TEMPLATE_TYPES["LISTPICKER"],
         "version": "1.0",
         "data": {
             "content": {
-                "title": CREATE_TICKET_OPTIONS['CARD_TITLE'],
-                "subtitle": CREATE_TICKET_OPTIONS['CARD_SUBTITLE'],
+                "title": get_chatbot_options()["CARD_TITLE"],
                 "elements": [
-                    {
-                        "title": CREATE_TICKET_OPTIONS['TITLE_SUPPORT_TICKET']
-                    },
-                    {
-                        "title": CREATE_TICKET_OPTIONS['TITLE_ORDER_TICKET']
-                    },
-                    {
-                        "title": CREATE_TICKET_OPTIONS['TITLE_ENHANCEMENT_TICKET']
-                    },
+                    {"title": get_chatbot_options()["TITLE_CREATE_TICKET"]},
+                    {"title": get_chatbot_options()["TITLE_TICKET_STATUS"]},
+                    {"title": get_chatbot_options()["TITLE_TALK_TO_AGENT"]},
                 ],
             },
-        }
-    },
-}
+        },
+    }
+
+    return BOT_OPTIONS
+
+
+def get_template_continue_chatbot():
+
+    from constants.constants import TEMPLATE_TYPES
+    from constants.messages import get_continue_chatbot_options
+
+    CONTINUE_CHATBOT = {
+        "templateType": TEMPLATE_TYPES["LISTPICKER"],
+        "version": "1.0",
+        "data": {
+            "content": {
+                "title": get_continue_chatbot_options()["CARD_TITLE"],
+                "elements": [
+                    {"title": get_continue_chatbot_options()["TITLE_YES"]},
+                    {"title": get_continue_chatbot_options()["TITLE_NO"]},
+                ],
+            },
+        },
+    }
+
+    return CONTINUE_CHATBOT

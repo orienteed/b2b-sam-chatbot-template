@@ -1,0 +1,42 @@
+{
+  "fr": {
+    "CHATBOT_OPTIONS:CARD_TITLE": "Que souhaitez-vous faire ?",
+    "CHATBOT_OPTIONS:CARD_SUBTITLE": "Veuillez sélectionner une option ci-dessous.",
+    "CHATBOT_OPTIONS:TITLE_CREATE_TICKET": "Créer un ticket",
+    "CHATBOT_OPTIONS:SUBTITLE_CREATE_TICKET": "Créez un ticket pour un problème que vous rencontrez.",
+    "CHATBOT_OPTIONS:TITLE_TICKET_STATUS": "Vérifier le statut du ticket",
+    "CHATBOT_OPTIONS:SUBTITLE_TICKET_STATUS": "Vérifiez l'état d'un ticket que vous avez déjà créé.",
+    "CHATBOT_OPTIONS:TITLE_TALK_TO_AGENT": "Parler à un agent",
+    "CHATBOT_OPTIONS:SUBTITLE_TALK_TO_AGENT": "Parlez à un agent pour obtenir de l'aide concernant votre problème.",
+
+    "CREATE_TICKET_OPTIONS:CARD_TITLE": "Quel type de ticket souhaitez-vous créer ?",
+    "CREATE_TICKET_OPTIONS:CARD_SUBTITLE": "Veuillez sélectionner une option ci-dessous.",
+    "CREATE_TICKET_OPTIONS:TITLE_SUPPORT_TICKET": "Ticket d'assistance",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_SUPPORT_TICKET": "Créez un ticket pour un problème que vous rencontrez.",
+    "CREATE_TICKET_OPTIONS:TITLE_ORDER_TICKET": "Ticket de commande",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ORDER_TICKET": "Créez un ticket pour une commande que vous avez passée.",
+    "CREATE_TICKET_OPTIONS:TITLE_ENHANCEMENT_TICKET": "Ticket d'amélioration",
+    "CREATE_TICKET_OPTIONS:SUBTITLE_ENHANCEMENT_TICKET": "Créez un ticket pour une amélioration que vous souhaitez voir apparaître.",
+    
+    "TICKET_TYPE_ZAMMAD:Support ticket": "Problème de support",
+    "TICKET_TYPE_ZAMMAD:Order ticket": "Problème de commande",
+    "TICKET_TYPE_ZAMMAD:Enhancement ticket": "Amélioration",
+    
+    "CHECK_TICKET_STATES_MESSAGES:ELICIT_TICKET_NUMBER_MESSAGE": "Entrez l'ID du billet",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_FOUND": "Le statut du ticket %{ticket_number} est: %{state}",
+    "CHECK_TICKET_STATES_MESSAGES:TICKET_NOT_FOUND": "Ticket %{ticket_number} non trouvé",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_OPEN": "Ouvrir",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_CLOSED": "Fermé",
+    "CHECK_TICKET_STATES_MESSAGES:STATE_NEW": "Nouveau",
+
+    "CREATE_TICKET_MESSAGES:ELICIT_TITLE_MESSAGE": "Introduire le titre du billet",
+    "CREATE_TICKET_MESSAGES:ELICIT_DESCRIPTION_MESSAGE": "Introduire la description du billet",
+    "CREATE_TICKET_MESSAGES:TICKET_CREATED": "Ticket créé avec le numéro %{ticket_number}",
+    "CREATE_TICKET_MESSAGES:TICKET_NOT_CREATED": "Erreur lors de la création du ticket",
+
+    "CONTINUE_CHATBOT_MESSAGES:CARD_TITLE": "Voulez-vous continuer dans le chatbot?",
+    "CONTINUE_CHATBOT_MESSAGES:CARD_SUBTITLE": "sélectionnez une option",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_YES": "Oui",
+    "CONTINUE_CHATBOT_MESSAGES:TITLE_NO": "Non"
+  }
+}
