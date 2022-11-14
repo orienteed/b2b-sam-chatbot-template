@@ -39,16 +39,11 @@ ZAMMAD_HEADERS = {
 }
 
 
-START_INTENT = "startIntent"
 CREATE_TICKET_INTENT = "createTicketIntent"
 TALK_TO_AGENT_INTENT = "talkToAgentIntent"
 CHECK_TICKET_STATUS_INTENT = "checkTicketStatusIntent"
 FALLBACK_INTENT = "FallbackIntent"
 
-
-START_INTENT_SLOTS = {"OPTIONS": "options"}
-
-ELICIT_START_INTENT_SLOTS = {START_INTENT_SLOTS["OPTIONS"]: None}
 
 CREATE_TICKET_INTENT_SLOTS = {
     "TICKET_TYPE": "ticketType",
