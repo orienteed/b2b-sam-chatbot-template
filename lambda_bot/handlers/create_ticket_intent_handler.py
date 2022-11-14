@@ -1,12 +1,14 @@
-def create_ticket_handler(input, slots, session_attributes, current_intent, slot_to_elicit, title_elicit, description_elicit, continue_chatbot):
+def create_ticket_handler(input, slots, session_attributes, current_intent, slot_to_elicit, title_elicit, description_elicit):
 
-    from .response_handler import formDelegateResponse, formElicitSlotResponse, formElicitSlotWithTemplateResponse, formElicitIntentTemplateBotOptionsResponse
+    from utils.form_response import formDelegateResponse, formElicitSlotResponse, formElicitSlotWithTemplateResponse
+    from utils.manage_continue_chatbot_form import manage_continue_chatbot_form
+
     from constants.constants import get_slots_structure, CREATE_TICKET_INTENT_SLOTS, SESSION_ATTRIBUTES
     
-    from .requests_hadler import request_create_ticket_handler
+    from .zammad_requests_handler import request_create_ticket_handler
     from constants.messages import get_create_ticket_messages, get_create_ticket_options, get_interactive_options
 
-    from templates.response_cards import get_template_create_ticket, get_template_bot_options, get_template_continue_chatbot
+    from templates.response_cards import get_template_create_ticket, get_template_continue_chatbot
 
     
     TICKET_TYPE = CREATE_TICKET_INTENT_SLOTS['TICKET_TYPE']
@@ -27,8 +29,6 @@ def create_ticket_handler(input, slots, session_attributes, current_intent, slot
 
     INTERACTIVE_OPTIONS = get_interactive_options()
 
-    TEMPLATE_BOT_OPTIONS = get_template_bot_options()
-
     TEMPLATE_CONTINUE_CHATBOT = get_template_continue_chatbot()
     
     if slots.get(TICKET_TYPE) is not None:
@@ -36,11 +36,11 @@ def create_ticket_handler(input, slots, session_attributes, current_intent, slot
             return formElicitSlotResponse(session_attributes, ORDER_NUMBER, slots, current_intent)
         
         if slots.get(CONTINUE_CHATBOT) is not None:
-
-            return formElicitIntentTemplateBotOptionsResponse(session_attributes, TEMPLATE_BOT_OPTIONS)
+            return manage_continue_chatbot_form(slots, session_attributes, current_intent)
             
         #Bad input continue chatbot
         elif session_attributes.get('ticketNumber_elicit') is not None:
+            session_attributes['ticketNumber_elicit'] = None
             return formElicitSlotWithTemplateResponse(session_attributes, CONTINUE_CHATBOT, TEMPLATE_CONTINUE_CHATBOT, slots, current_intent)
 
         
@@ -62,30 +62,16 @@ def create_ticket_handler(input, slots, session_attributes, current_intent, slot
     
                 message = request_create_ticket_handler(session_attributes, slots)
                 session_attributes['ticketNumber_elicit'] = True
+                session_attributes['title_elicit'] = None
+                session_attributes['description_elicit'] = None
                 
                 return formElicitSlotWithTemplateResponse(session_attributes, CONTINUE_CHATBOT, TEMPLATE_CONTINUE_CHATBOT, slots, current_intent, message)
 
             else:
                 if slot_to_elicit is None:
                     request_create_ticket_handler(session_attributes, slots)
+
                 return formDelegateResponse(session_attributes, slots, current_intent)
                 
     else:
         return formElicitSlotWithTemplateResponse(session_attributes, TICKET_TYPE, TEMPLATE_TICKET_TYPE, INTERACTIVE_OPTIONS['CREATE_TICKET']['slots'], INTERACTIVE_OPTIONS['CREATE_TICKET']['intent'])
-
-
-def handler_continue_chatbot(slots, session_attributes, current_intent, CONTINUE_CHATBOT, SESSION_ATTRIBUTES, START_INTENT, START_INTENT_SLOTS, ELICIT_START_INTENT_SLOTS, TEMPLATE_BOT_OPTIONS):
-    from .response_handler import formTerminalResponse, formElicitSlotWithTemplateResponse
-    from utils.locale import Locale
-
-    locale = Locale()
-    
-    if slots.get(CONTINUE_CHATBOT)['value']['originalValue'] == locale.get_i18n().t("CONTINUE_CHATBOT_MESSAGES:TITLE_YES", locale=locale.get_locale()):
-        session_attributes[SESSION_ATTRIBUTES['CONTINUE_CHATBOT']] = None
-        session_attributes[SESSION_ATTRIBUTES['TITLE_ELICIT']] = None
-        session_attributes[SESSION_ATTRIBUTES['DESCRIPTION_ELICIT']] = None
-        session_attributes['ticketNumber_elicit'] = None
-        return formElicitSlotWithTemplateResponse(session_attributes, START_INTENT_SLOTS['OPTIONS'], TEMPLATE_BOT_OPTIONS, ELICIT_START_INTENT_SLOTS, START_INTENT)
-    
-    else:
-        return formTerminalResponse(current_intent)

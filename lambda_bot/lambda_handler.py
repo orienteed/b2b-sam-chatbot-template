@@ -1,21 +1,17 @@
 def lambda_handler(event, context):
 
-    input, current_intent, slot_to_elicit, slots, session_attributes, template, title_elicit, description_elicit, continue_chatbot = setup_variables(event)
+    input, current_intent, slot_to_elicit, slots, session_attributes, template, title_elicit, description_elicit = setup_variables(event)
 
-    from constants.constants import START_INTENT, CREATE_TICKET_INTENT, CHECK_TICKET_STATUS_INTENT, FALLBACK_INTENT
+    from constants.constants import CREATE_TICKET_INTENT, CHECK_TICKET_STATUS_INTENT, FALLBACK_INTENT
 
-    from handlers.start_intent_handler import start_intent_handler
     from handlers.create_ticket_intent_handler import create_ticket_handler
     from handlers.check_ticket_status_intent_handler import check_ticket_status_handler
     from handlers.fallback_intent_handler import fallback_handler
-    from handlers.response_handler import formDelegateResponse
+    from utils.form_response import formDelegateResponse
 
-
-    if current_intent == START_INTENT:
-        return start_intent_handler(input, event, session_attributes, slots, current_intent, template, slot_to_elicit)
-    
-    elif current_intent == CREATE_TICKET_INTENT:
-        return create_ticket_handler(input, slots, session_attributes, current_intent, slot_to_elicit, title_elicit, description_elicit, continue_chatbot)
+   
+    if current_intent == CREATE_TICKET_INTENT:
+        return create_ticket_handler(input, slots, session_attributes, current_intent, slot_to_elicit, title_elicit, description_elicit)
 
     elif current_intent == CHECK_TICKET_STATUS_INTENT:
         return check_ticket_status_handler(session_attributes, input, slots, current_intent)
@@ -61,8 +57,5 @@ def setup_variables(event):
     if session_attributes.get(SESSION_ATTRIBUTES['DESCRIPTION_ELICIT']):
         description_elicit = session_attributes[SESSION_ATTRIBUTES['DESCRIPTION_ELICIT']]
 
-    continue_chatbot = None
-    if session_attributes.get(SESSION_ATTRIBUTES['CONTINUE_CHATBOT']):
-        continue_chatbot = session_attributes[SESSION_ATTRIBUTES['CONTINUE_CHATBOT']]
 
-    return input, current_intent, slot_to_elicit, slots, session_attributes, template, title_elicit, description_elicit, continue_chatbot
+    return input, current_intent, slot_to_elicit, slots, session_attributes, template, title_elicit, description_elicit
