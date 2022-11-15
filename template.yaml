@@ -11,7 +11,7 @@ Globals:
 
 Resources:
   #bot validation lambda function
-  TestlexBotFunction:
+  BotLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: lambda_bot/
@@ -23,7 +23,7 @@ Resources:
         - x86_64
       Environment:
         Variables:
-          ZAMMAD_GATEWAY_URL: "YOUR_ZAMMAD_GATEWAY_URL_HERE"
+          ZAMMAD_GATEWAY_URL: "https://chatbot-test.orienteed.com"
 
   # IAM Role used by the Lex service to make runtime calls
   LexServiceRole:
@@ -44,35 +44,88 @@ Resources:
     Type: AWS::Lambda::Permission
     Properties: 
       Action: lambda:InvokeFunction
-      FunctionName: !GetAtt TestlexBotFunction.Arn
+      FunctionName: !GetAtt BotLambdaFunction.Arn
       Principal: lex.amazonaws.com
 
   #Bot
-  # TestlexBotChat:
-  #   Type: AWS::Lex::Bot
-  #   Properties:
-  #     AutoBuildBotLocales: true
-  #     BotFileS3Location:
-  #       S3Bucket: "bot-lex"
-  #       S3ObjectKey: "PruebaSam-DRAFT-1UPTCTOTIQ-LexJson.zip"
-  #       S3ObjectVersion: "1vNuwx25OilddfBWrK94UZnDcdy1TUMw"
-  #     DataPrivacy:
-  #       ChildDirected: false
-  #     Description: "Test with SAM over a bot that says Me alegro!!"
-  #     IdleSessionTTLInSeconds: 60
-  #     Name: "TestChatBotSAM"
-  #     RoleArn: !GetAtt LexServiceRole.Arn
-  #     TestBotAliasSettings:
-  #       BotAliasLocaleSettings:
-  #         - BotAliasLocaleSetting:
-  #             CodeHookSpecification:
-  #               LambdaCodeHook:
-  #                 CodeHookInterfaceVersion: "1.0"
-  #                 LambdaArn: !GetAtt TestlexBotFunction.Arn
-  #             Enabled: true
-  #           LocaleId: "en_US"
+  LexBot:
+    Type: AWS::Lex::Bot
+    Properties:
+      AutoBuildBotLocales: true
+      BotFileS3Location:
+        S3Bucket: "bot-lex"
+        S3ObjectKey: "Prod_B2BStore_Chatbot_LexJson.zip"
+        S3ObjectVersion: "X.mbOZniMnDtcXtM9rss2yFHtey4R8Ci"
+      DataPrivacy:
+        ChildDirected: false
+      Description: "B2BStore chatbot"
+      IdleSessionTTLInSeconds: 60
+      Name: "B2BStoreChatbot"
+      RoleArn: !GetAtt LexServiceRole.Arn
+
+  #Bot Version
+  LexBotVersion:
+    DependsOn: LexBot
+    Type: AWS::Lex::BotVersion
+    Properties:
+      BotId: !Ref LexBot
+      BotVersionLocaleSpecification:
+        - LocaleId: "en_US"
+          BotVersionLocaleDetails:
+            SourceBotVersion: DRAFT
+        - LocaleId: "es_ES"
+          BotVersionLocaleDetails:
+            SourceBotVersion: DRAFT
+        - LocaleId: "fr_FR"
+          BotVersionLocaleDetails:
+            SourceBotVersion: DRAFT
+        - LocaleId: "pt_PT"
+          BotVersionLocaleDetails:
+            SourceBotVersion: DRAFT
+      Description: "B2BStore chatbot version"
+
+  
+  #Bot Alias
+  LexBotAlias:
+    DependsOn: LexBotVersion
+    Type: AWS::Lex::BotAlias
+    Properties:
+      BotId: !Ref LexBot
+      BotAliasName: "ProdB2BStoreChatbot_v1"
+      BotVersion: !GetAtt LexBotVersion.BotVersion
+      Description: "B2BStore chatbot alias"
+      BotAliasLocaleSettings:
+          - BotAliasLocaleSetting:
+              CodeHookSpecification:
+                LambdaCodeHook:
+                  CodeHookInterfaceVersion: "1.0"
+                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+              Enabled: true
+            LocaleId: "en_US"
+          - BotAliasLocaleSetting:
+              CodeHookSpecification:
+                LambdaCodeHook:
+                  CodeHookInterfaceVersion: "1.0"
+                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+              Enabled: true
+            LocaleId: "es_ES"
+          - BotAliasLocaleSetting:
+              CodeHookSpecification:
+                LambdaCodeHook:
+                  CodeHookInterfaceVersion: "1.0"
+                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+              Enabled: true
+            LocaleId: "fr_FR"
+          - BotAliasLocaleSetting:
+              CodeHookSpecification:
+                LambdaCodeHook:
+                  CodeHookInterfaceVersion: "1.0"
+                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+              Enabled: true
+            LocaleId: "pt_PT"
+
 
 Outputs:
-  TestlexBotFunction:
+  BotLambdaFunction:
     Description: "LexBot Lambda Function ARN"
-    Value: !GetAtt TestlexBotFunction.Arn
+    Value: !GetAtt BotLambdaFunction.Arn
