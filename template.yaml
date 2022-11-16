@@ -8,22 +8,23 @@ Description: >
 Globals:
   Function:
     Timeout: 10
+    Environment:
+      Variables:
+        ZAMMAD_GATEWAY_URL: "https://chatbot-test.orienteed.com"
 
 Resources:
-  #bot validation lambda function
+  # Lambda function to handle the chatbot
   BotLambdaFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: lambda_bot/
       Handler: lambda_handler.lambda_handler
       Runtime: python3.8
+      AutoPublishAlias: prod
       Policies:
         - AWSLambdaBasicExecutionRole
       Architectures:
         - x86_64
-      Environment:
-        Variables:
-          ZAMMAD_GATEWAY_URL: "https://chatbot-test.orienteed.com"
 
   # IAM Role used by the Lex service to make runtime calls
   LexServiceRole:
@@ -39,7 +40,7 @@ Resources:
             Action:
               - "sts:AssumeRole"
 
-  # give permission to Lex bots to run the validation function
+  # Give permission to Lex bot to run the validation Lambda function
   lexBotPermission:
     Type: AWS::Lambda::Permission
     Properties: 
@@ -47,7 +48,7 @@ Resources:
       FunctionName: !GetAtt BotLambdaFunction.Arn
       Principal: lex.amazonaws.com
 
-  #Bot
+  #Amazon Lex bot
   LexBot:
     Type: AWS::Lex::Bot
     Properties:
@@ -63,7 +64,7 @@ Resources:
       Name: "B2BStoreChatbot"
       RoleArn: !GetAtt LexServiceRole.Arn
 
-  #Bot Version
+  #Create a Bot Version
   LexBotVersion:
     DependsOn: LexBot
     Type: AWS::Lex::BotVersion
@@ -85,7 +86,7 @@ Resources:
       Description: "B2BStore chatbot version"
 
   
-  #Bot Alias
+  #Create a Bot Alias for the Bot Version
   LexBotAlias:
     DependsOn: LexBotVersion
     Type: AWS::Lex::BotAlias
@@ -99,28 +100,28 @@ Resources:
               CodeHookSpecification:
                 LambdaCodeHook:
                   CodeHookInterfaceVersion: "1.0"
-                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+                  LambdaArn: !Ref BotLambdaFunction.Alias
               Enabled: true
             LocaleId: "en_US"
           - BotAliasLocaleSetting:
               CodeHookSpecification:
                 LambdaCodeHook:
                   CodeHookInterfaceVersion: "1.0"
-                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+                  LambdaArn: !Ref BotLambdaFunction.Alias
               Enabled: true
             LocaleId: "es_ES"
           - BotAliasLocaleSetting:
               CodeHookSpecification:
                 LambdaCodeHook:
                   CodeHookInterfaceVersion: "1.0"
-                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+                  LambdaArn: !Ref BotLambdaFunction.Alias
               Enabled: true
             LocaleId: "fr_FR"
           - BotAliasLocaleSetting:
               CodeHookSpecification:
                 LambdaCodeHook:
                   CodeHookInterfaceVersion: "1.0"
-                  LambdaArn: !GetAtt BotLambdaFunction.Arn
+                  LambdaArn: !Ref BotLambdaFunction.Alias
               Enabled: true
             LocaleId: "pt_PT"
 
