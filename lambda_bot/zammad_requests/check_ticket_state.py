@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ZAMMAD_GATEWAY_URL = os.getenv("ZAMMAD_GATEWAY_URL")
+B2BSTORE_URL = os.getenv("B2BSTORE_URL")
 
 def check_ticket_states(ticket_number, magento_token):
 
@@ -20,7 +20,7 @@ def check_ticket_states(ticket_number, magento_token):
 
     posible_states = get_ticket_states(headers)
 
-    url = f"{ZAMMAD_GATEWAY_URL}/csr/api/v1/tickets/search?search=number:{ticket_number}&filters=%7B%22status%22:%20%5B%5D,%20%22type%22:%20%5B%5D%7D"
+    url = f"{B2BSTORE_URL}/csr/api/v1/tickets/search?search=number:{ticket_number}&filters=%7B%22status%22:%20%5B%5D,%20%22type%22:%20%5B%5D%7D"
 
     ticket_data = json.loads(requests.get(url, headers=headers).content.decode())
 
@@ -39,4 +39,4 @@ def check_ticket_states(ticket_number, magento_token):
 
 def get_ticket_states(headers):
 
-    return json.loads(requests.get(f"{ZAMMAD_GATEWAY_URL}/csr/api/v1/ticket_states/", headers=headers).content.decode())
+    return json.loads(requests.get(f"{B2BSTORE_URL}/csr/api/v1/ticket_states/", headers=headers).content.decode())
