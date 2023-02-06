@@ -1,5 +1,5 @@
 def fallback_handler(session_attributes):
-    from .response_handler import formElicitIntentTemplateBotOptionsResponse
+    from utils.form_response import formElicitIntentTemplateBotOptionsResponse
     from templates.response_cards import get_template_bot_options
     
 

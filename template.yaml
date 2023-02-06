@@ -10,7 +10,7 @@ Globals:
     Timeout: 10
     Environment:
       Variables:
-        ZAMMAD_GATEWAY_URL: "https://chatbot-test.orienteed.com"
+        B2BSTORE_URL: "YOUR_B2BSTORE_URL_HERE"
 
 Resources:
   # Lambda function to handle the chatbot
@@ -45,7 +45,7 @@ Resources:
     Type: AWS::Lambda::Permission
     Properties: 
       Action: lambda:InvokeFunction
-      FunctionName: !GetAtt BotLambdaFunction.Arn
+      FunctionName: !Ref BotLambdaFunction.Alias
       Principal: lex.amazonaws.com
 
   #Amazon Lex bot
